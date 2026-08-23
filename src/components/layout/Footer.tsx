@@ -33,7 +33,7 @@ export function Footer() {
             
             <div className="flex gap-4">
               {[
-                { icon: <span>Wa</span>, href: "https://wa.me/556182586603", label: "Falar no WhatsApp", external: true },
+                { icon: <span>Wa</span>, href: whatsappLink, label: "Falar no WhatsApp", external: true },
                 { icon: <Mail className="w-4 h-4" />, href: "mailto:contato@guildtechsupport.com", label: "Enviar e-mail", external: false }
               ].map((social, i) => (
                 <a 
