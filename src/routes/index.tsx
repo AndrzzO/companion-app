@@ -27,10 +27,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Guild Tech Support | Engenharia de Software Premium" },
       { property: "og:description", content: "Soluções tecnológicas personalizadas: sites, sistemas, automação e dashboards para o seu negócio." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://joy-omatic-maker.lovable.app/" },
+      { property: "og:url", content: "https://guild-tech-support.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://joy-omatic-maker.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://guild-tech-support.lovable.app/" }],
     scripts: [
       {
         type: "application/ld+json",
