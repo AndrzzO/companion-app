@@ -3,18 +3,22 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 
 async function checkAdmin(supabase: any, userId: string) {
-  const { data: isAdmin, error } = await supabase.rpc('has_role', { 
-    _user_id: userId, 
-    _role: 'admin'
-  });
-  
+  // Reads the caller's own role row (allowed by RLS "Users can read their own roles")
+  const { data, error } = await supabase
+    .from('user_roles')
+    .select('role')
+    .eq('user_id', userId)
+    .eq('role', 'admin')
+    .maybeSingle();
+
   if (error) {
     console.error("Error checking admin role:", error);
     throw new Error("Forbidden: Error validating roles");
   }
-  
-  if (!isAdmin) throw new Error("Forbidden: Admin access required");
+
+  if (!data) throw new Error("Forbidden: Admin access required");
 }
+
 
 const CategorySchema = z.object({
   id: z.string().uuid().optional(),
