@@ -26,7 +26,6 @@ export const upsertCategory = createServerFn({ method: "POST" })
   }).parse(data))
   .handler(async ({ data }) => {
     await checkAdmin();
-    // Use an "as any" to bypass rigid TS strictness if needed, or map properly
     const { error } = await supabase
       .from("categories")
       .upsert(data as any);

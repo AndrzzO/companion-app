@@ -8,9 +8,10 @@ type Category = Database["public"]["Tables"]["categories"]["Row"];
 interface SolutionsProps {
   services: Service[];
   categories: Category[];
+  whatsappLink: string;
 }
 
-export function Solutions({ services, categories }: SolutionsProps) {
+export function Solutions({ services, categories, whatsappLink }: SolutionsProps) {
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -65,7 +66,7 @@ export function Solutions({ services, categories }: SolutionsProps) {
         </div>
 
         {categories.map((category) => {
-          const categoryServices = services.filter(s => s.category_id === category.id);
+          const categoryServices = services.filter(s => s.category_id === category.id && s.status === 'active');
           if (categoryServices.length === 0) return null;
 
           return (
@@ -128,7 +129,7 @@ export function Solutions({ services, categories }: SolutionsProps) {
                         </div>
                         
                         <a 
-                          href={`https://wa.me/5511999999999?text=Olá, gostaria de saber mais sobre ${service.name}`}
+                          href={`${whatsappLink}?text=Olá, gostaria de saber mais sobre ${service.name}`}
                           className="bg-white text-slate-950 w-12 h-12 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300 shadow-premium group/btn"
                         >
                           <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
@@ -136,7 +137,7 @@ export function Solutions({ services, categories }: SolutionsProps) {
                       </div>
                       
                       <a 
-                        href={`https://wa.me/5511999999999?text=Olá, gostaria de saber mais sobre ${service.name}`}
+                        href={`${whatsappLink}?text=Olá, gostaria de saber mais sobre ${service.name}`}
                         className="text-slate-500 text-[9px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors duration-300"
                       >
                         {service.cta_text || "Request Access"}

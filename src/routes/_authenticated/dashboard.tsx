@@ -32,7 +32,7 @@ function Dashboard() {
   
   // Mutations
   const categoryMutation = useMutation({
-    mutationFn: upsertCategory,
+    mutationFn: (payload: any) => upsertCategory({ data: payload }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['catalog'] })
       toast.success('Categoria salva com sucesso')
@@ -40,7 +40,7 @@ function Dashboard() {
   })
 
   const delCategoryMutation = useMutation({
-    mutationFn: deleteCategory,
+    mutationFn: (id: string) => deleteCategory({ data: id }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['catalog'] })
       toast.success('Categoria removida')
@@ -48,7 +48,7 @@ function Dashboard() {
   })
 
   const serviceMutation = useMutation({
-    mutationFn: upsertService,
+    mutationFn: (payload: any) => upsertService({ data: payload }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['catalog'] })
       toast.success('Serviço salvo com sucesso')
@@ -56,7 +56,7 @@ function Dashboard() {
   })
 
   const delServiceMutation = useMutation({
-    mutationFn: deleteService,
+    mutationFn: (id: string) => deleteService({ data: id }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['catalog'] })
       toast.success('Serviço removido')
@@ -64,7 +64,7 @@ function Dashboard() {
   })
 
   const settingsMutation = useMutation({
-    mutationFn: updateSetting,
+    mutationFn: (payload: { key: string; value: string }) => updateSetting({ data: payload }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['catalog'] })
       toast.success('Configurações atualizadas')
