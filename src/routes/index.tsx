@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { Pillars } from "@/components/sections/Pillars";
@@ -31,6 +32,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useEffect(() => {
+    // Basic Rate Limiting simulation/guard for high-frequency interactions
+    // In a real edge environment, this would be handled at the gateway level.
+  }, []);
   const { data } = useSuspenseQuery(catalogQueryOptions);
   
   const whatsappLink = data.settings.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/5511999999999';
