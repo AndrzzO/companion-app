@@ -73,7 +73,8 @@ export function Footer() {
                   const name = (document.getElementById('footer-name') as HTMLInputElement).value;
                   const message = (document.getElementById('footer-message') as HTMLTextAreaElement).value;
                   const text = `Olá, meu nome é ${name}. Gostaria de falar sobre: ${message}`;
-                  window.open(`https://api.whatsapp.com/send?phone=556182586603&text=${encodeURIComponent(text)}`, '_blank');
+                  // Using wa.me which is more reliable for direct links and avoids common CORS/Security blocks
+                  window.location.href = `https://wa.me/556182586603?text=${encodeURIComponent(text)}`;
                 }}
                 className="w-full bg-accent text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
               >
