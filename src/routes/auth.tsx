@@ -5,7 +5,19 @@ import { useNavigate } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/auth')({
   component: AuthPage,
+  head: () => ({
+    meta: [
+      { title: 'Acesso Administrativo | Guild Tech Support' },
+      { name: 'description', content: 'Área restrita de login para a equipe administrativa da Guild Tech Support gerenciar o catálogo de soluções.' },
+      { name: 'robots', content: 'noindex, nofollow' },
+      { property: 'og:title', content: 'Acesso Administrativo | Guild Tech Support' },
+      { property: 'og:description', content: 'Login restrito à equipe da Guild Tech Support.' },
+      { property: 'og:url', content: 'https://joy-omatic-maker.lovable.app/auth' },
+    ],
+    links: [{ rel: 'canonical', href: 'https://joy-omatic-maker.lovable.app/auth' }],
+  }),
 })
+
 
 function AuthPage() {
   const [email, setEmail] = useState('')

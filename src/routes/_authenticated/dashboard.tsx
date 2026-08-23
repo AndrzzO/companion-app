@@ -18,7 +18,19 @@ import { Label } from '@/components/ui/label'
 
 export const Route = createFileRoute('/_authenticated/dashboard')({
   component: Dashboard,
+  head: () => ({
+    meta: [
+      { title: 'Painel do Catálogo | Guild Tech Support' },
+      { name: 'description', content: 'Painel interno para gerenciar categorias, serviços e configurações do catálogo da Guild Tech Support.' },
+      { name: 'robots', content: 'noindex, nofollow' },
+      { property: 'og:title', content: 'Painel do Catálogo | Guild Tech Support' },
+      { property: 'og:description', content: 'Gerenciamento interno do catálogo de soluções.' },
+      { property: 'og:url', content: 'https://joy-omatic-maker.lovable.app/dashboard' },
+    ],
+    links: [{ rel: 'canonical', href: 'https://joy-omatic-maker.lovable.app/dashboard' }],
+  }),
 })
+
 
 function Dashboard() {
   const { data } = useSuspenseQuery({

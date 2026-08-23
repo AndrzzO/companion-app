@@ -17,19 +17,52 @@ const catalogQueryOptions = queryOptions({
 export const Route = createFileRoute("/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(catalogQueryOptions),
   component: Index,
-  head: () => ({
-    title: "Guild Tech Support | Tecnologia que transforma processos em resultados",
+  head: ({ loaderData }) => ({
     meta: [
+      { title: "Guild Tech Support | Sistemas e Sites Sob Medida para Empresas" },
       {
         name: "description",
         content: "Desenvolvemos sites, sistemas e ferramentas digitais sob medida para empresas que buscam mais eficiência, organização e crescimento.",
       },
       { property: "og:title", content: "Guild Tech Support | Engenharia de Software Premium" },
       { property: "og:description", content: "Soluções tecnológicas personalizadas: sites, sistemas, automação e dashboards para o seu negócio." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://joy-omatic-maker.lovable.app/" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://joy-omatic-maker.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Catálogo de soluções Guild Tech Support",
+          itemListElement: (loaderData?.services ?? []).map((s: any, i: number) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            item: {
+              "@type": "Service",
+              name: s.name,
+              description: s.description ?? undefined,
+              provider: { "@type": "Organization", name: "Guild Tech Support" },
+              ...(s.price
+                ? {
+                    offers: {
+                      "@type": "Offer",
+                      price: String(s.price),
+                      priceCurrency: "BRL",
+                    },
+                  }
+                : {}),
+            },
+          })),
+        }),
+      },
     ],
   }),
 });
+
 
 function Index() {
   useEffect(() => {
