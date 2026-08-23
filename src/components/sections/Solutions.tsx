@@ -101,8 +101,21 @@ export function Solutions({ services, categories, whatsappLink }: SolutionsProps
                   <motion.div 
                     key={service.id} 
                     variants={item}
-                    className="group flex flex-col p-10 glass-card rounded-3xl hover:-translate-y-2 transition-all duration-500"
+                    className="group flex flex-col p-0 glass-card rounded-3xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
                   >
+                    <div className="h-48 w-full relative opacity-60 group-hover:opacity-100 transition-opacity duration-500">
+                      <video 
+                        autoPlay 
+                        muted 
+                        loop 
+                        playsInline
+                        className="w-full h-full object-cover"
+                      >
+                        <source src="https://cdn.pixabay.com/video/2021/04/12/70860-536967732_large.mp4" type="video/mp4" />
+                      </video>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    </div>
+                    <div className="p-10 flex flex-col flex-grow">
                     <div className="flex justify-between items-start mb-8">
                       <h5 className="font-black text-xl text-white group-hover:text-accent transition-colors duration-300 tracking-tight leading-tight">
                         {service.name}
@@ -142,6 +155,7 @@ export function Solutions({ services, categories, whatsappLink }: SolutionsProps
                       >
                         {service.cta_text || "Request Access"}
                       </a>
+                    </div>
                     </div>
                   </motion.div>
                 ))}
