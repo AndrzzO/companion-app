@@ -1,14 +1,47 @@
-import { motion } from "framer-motion";
-import { CheckCircle2, Search, FileSearch, Calendar, Code, Rocket } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, Search, FileSearch, Calendar, Code, Rocket, X } from "lucide-react";
+import { useState } from "react";
 
 export function HowWeWork() {
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
   const steps = [
-    { title: "Diagnóstico", desc: "Entendemos o problema", icon: <Search className="w-5 h-5" /> },
-    { title: "Análise", desc: "Analisamos a solução", icon: <FileSearch className="w-5 h-5" /> },
-    { title: "Planning", desc: "Planejamos cada sprint", icon: <Calendar className="w-5 h-5" /> },
-    { title: "Dev", desc: "Desenvolvemos com excelência", icon: <Code className="w-5 h-5" /> },
-    { title: "QA", desc: "Validamos cada detalhe", icon: <CheckCircle2 className="w-5 h-5" /> },
-    { title: "Deploy", desc: "Entregamos resultados", icon: <Rocket className="w-5 h-5" /> }
+    { 
+      title: "Diagnóstico", 
+      desc: "Entendemos o problema", 
+      details: "Mergulhamos fundo no seu modelo de negócio para identificar gargalos operacionais e oportunidades de otimização tecnológica.",
+      icon: <Search className="w-5 h-5" /> 
+    },
+    { 
+      title: "Análise", 
+      desc: "Analisamos a solução", 
+      details: "Cruzamos suas necessidades com as melhores tecnologias do mercado para desenhar uma arquitetura robusta e escalável.",
+      icon: <FileSearch className="w-5 h-5" /> 
+    },
+    { 
+      title: "Planning", 
+      desc: "Planejamos cada sprint", 
+      details: "Estruturamos o roadmap de desenvolvimento com entregas claras, prazos realistas e marcos de sucesso bem definidos.",
+      icon: <Calendar className="w-5 h-5" /> 
+    },
+    { 
+      title: "Dev", 
+      desc: "Desenvolvemos com excelência", 
+      details: "Nossa engenharia transforma o plano em código limpo, seguindo padrões premium de performance e segurança.",
+      icon: <Code className="w-5 h-5" /> 
+    },
+    { 
+      title: "QA", 
+      desc: "Validamos cada detalhe", 
+      details: "Testes rigorosos garantem que cada funcionalidade opere perfeitamente antes de chegar ao ambiente de produção.",
+      icon: <CheckCircle2 className="w-5 h-5" /> 
+    },
+    { 
+      title: "Deploy", 
+      desc: "Entregamos resultados", 
+      details: "Lançamento assistido e monitorado, garantindo uma transição suave para as novas ferramentas que impulsionarão seu negócio.",
+      icon: <Rocket className="w-5 h-5" /> 
+    }
   ];
 
   return (
@@ -43,7 +76,8 @@ export function HowWeWork() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="group relative flex flex-col items-center text-center p-8 glass rounded-2xl hover:bg-slate-900 transition-all duration-500 border-white/5"
+              className="group relative flex flex-col items-center text-center p-8 glass rounded-2xl hover:bg-slate-900 transition-all duration-500 border-white/5 cursor-pointer"
+              onClick={() => setActiveStep(i)}
             >
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center font-black text-accent mb-6 group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all duration-500">
                 {s.icon}
@@ -51,12 +85,70 @@ export function HowWeWork() {
               <h4 className="text-[10px] font-black uppercase tracking-widest text-white mb-2">{s.title}</h4>
               <p className="text-[11px] text-slate-500 font-bold leading-relaxed">{s.desc}</p>
               
+              <button
+                className="mt-4 text-[9px] font-black uppercase tracking-tighter text-accent opacity-0 group-hover:opacity-100 transition-opacity underline underline-offset-4"
+              >
+                Ver Detalhes
+              </button>
+
               {i < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-white/10 z-20"></div>
               )}
             </motion.div>
           ))}
         </div>
+
+        <AnimatePresence>
+          {activeStep !== null && steps[activeStep] && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-md"
+              onClick={() => setActiveStep(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="glass-card max-w-lg w-full p-12 rounded-3xl relative border-accent/20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  onClick={() => setActiveStep(null)}
+                  className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-8">
+                  {steps[activeStep].icon}
+                </div>
+
+                <span className="text-[10px] font-black tracking-[0.3em] text-accent uppercase mb-4 block">
+                  Fase {activeStep + 1} / {steps[activeStep].title}
+                </span>
+
+                <h3 className="text-3xl font-black text-white mb-6 tracking-tighter italic">
+                  {steps[activeStep].desc}
+                </h3>
+
+                <p className="text-slate-400 text-lg leading-relaxed font-medium">
+                  {steps[activeStep].details}
+                </p>
+
+                <div className="mt-12 pt-8 border-t border-white/5">
+                  <button 
+                    onClick={() => setActiveStep(null)}
+                    className="w-full py-4 bg-accent text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-all"
+                  >
+                    Entendido
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
