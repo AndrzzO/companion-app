@@ -1,4 +1,5 @@
 import { Mail, Send } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { getCatalog } from "@/lib/catalog.functions";
 import { useQuery } from "@tanstack/react-query";
 
