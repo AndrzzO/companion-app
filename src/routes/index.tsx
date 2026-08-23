@@ -14,6 +14,7 @@ const catalogQueryOptions = queryOptions({
 });
 
 export const Route = createFileRoute("/")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(catalogQueryOptions),
   component: Index,
   head: () => ({
     title: "Guild Tech Support | Tecnologia que transforma processos em resultados",
@@ -30,13 +31,15 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { data } = useSuspenseQuery(catalogQueryOptions);
+  
   return (
     <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-100">
       <Navbar />
       <main>
         <Hero />
         <Pillars />
-        <Solutions />
+        <Solutions services={data.services} categories={data.categories} />
         <HowWeWork />
       </main>
       <Footer />
