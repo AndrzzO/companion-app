@@ -10,12 +10,19 @@ interface SolutionsProps {
 
 export function Solutions({ services, categories }: SolutionsProps) {
   return (
-    <section id="soluções" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">O que desenvolvemos</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto">
-            Soluções tecnológicas sob medida, desenhadas para elevar a maturidade digital da sua empresa.
+    <section id="soluções" className="py-24 bg-white relative overflow-hidden">
+      {/* Background patterns */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-[0.02] pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:40px_40px]"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-3xl mb-20">
+          <h2 className="text-sm font-bold tracking-[0.2em] text-blue-600 uppercase mb-4">Portfólio de Soluções</h2>
+          <h3 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight">O que desenvolvemos</h3>
+          <div className="h-1.5 w-20 bg-blue-600 mb-8"></div>
+          <p className="text-lg text-slate-500 leading-relaxed">
+            Engenharia de software aplicada para resolver desafios complexos. Desenvolvemos ferramentas digitais sob medida que elevam a maturidade operacional e estratégica do seu negócio.
           </p>
         </div>
 
@@ -24,41 +31,59 @@ export function Solutions({ services, categories }: SolutionsProps) {
           if (categoryServices.length === 0) return null;
 
           return (
-            <div key={category.id} className="mb-16 last:mb-0">
-              <h3 className="text-xl font-semibold mb-8 border-l-4 border-blue-600 pl-4">
-                {category.name}
-              </h3>
+            <div key={category.id} className="mb-24 last:mb-0">
+              <div className="flex items-center gap-4 mb-12">
+                <span className="text-xs font-bold bg-slate-100 text-slate-500 px-3 py-1 rounded-full uppercase tracking-widest">
+                  Categoria
+                </span>
+                <h4 className="text-2xl font-bold text-slate-900 tracking-tight">
+                  {category.name}
+                </h4>
+              </div>
+              
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categoryServices.map((service) => (
                   <div 
                     key={service.id} 
-                    className="group p-8 border border-slate-100 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white"
+                    className="group flex flex-col p-10 border border-slate-100 rounded-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:-translate-y-2 transition-all duration-500 bg-white"
                   >
-                    <div className="flex justify-between items-start mb-4">
-                      <h4 className="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <div className="flex justify-between items-start mb-6">
+                      <h5 className="font-bold text-xl text-slate-900 group-hover:text-blue-600 transition-colors duration-300">
                         {service.name}
-                      </h4>
+                      </h5>
                       {service.is_featured && (
-                        <span className="text-[10px] uppercase tracking-widest font-bold bg-blue-50 text-blue-600 px-2 py-1 rounded">
-                          Destaque
-                        </span>
+                        <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.15em] font-black text-blue-600 bg-blue-50 px-2.5 py-1.5 rounded-md border border-blue-100">
+                          <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse"></span>
+                          Premium
+                        </div>
                       )}
                     </div>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                    
+                    <p className="text-slate-500 leading-relaxed mb-10 flex-grow">
                       {service.description}
                     </p>
-                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-slate-50">
-                      <div className="text-sm">
-                        <span className="text-slate-400 block text-[10px] uppercase tracking-wider mb-1">Investimento</span>
-                        <span className="font-semibold text-slate-900">
-                          {service.price_prefix} {service.price ? `R$ ${service.price.toLocaleString('pt-BR')}` : 'Sob consulta'}
-                        </span>
+                    
+                    <div className="pt-8 border-t border-slate-50 flex flex-col gap-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex flex-col">
+                          <span className="text-slate-400 text-[9px] font-bold uppercase tracking-widest mb-1">Investimento Est.</span>
+                          <span className="font-bold text-slate-900 text-lg">
+                            {service.price_prefix} {service.price ? `R$ ${service.price.toLocaleString('pt-BR')}` : 'Sob consulta'}
+                          </span>
+                        </div>
+                        <a 
+                          href={`https://wa.me/5511999999999?text=Olá, gostaria de saber mais sobre ${service.name}`}
+                          className="bg-slate-900 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-300"
+                        >
+                          →
+                        </a>
                       </div>
+                      
                       <a 
                         href={`https://wa.me/5511999999999?text=Olá, gostaria de saber mais sobre ${service.name}`}
-                        className="text-blue-600 text-sm font-bold hover:underline"
+                        className="text-slate-400 text-[10px] font-bold uppercase tracking-widest hover:text-blue-600 transition-colors duration-300"
                       >
-                        {service.cta_text} →
+                        {service.cta_text}
                       </a>
                     </div>
                   </div>
