@@ -71,7 +71,7 @@ function Index() {
   }, []);
   const { data } = useSuspenseQuery(catalogQueryOptions);
   
-  const whatsappLink = data.settings.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/5511999999999';
+  const whatsappLink = data.settings.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/556182586603';
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-accent/30">

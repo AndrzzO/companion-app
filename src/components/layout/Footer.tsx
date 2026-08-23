@@ -10,7 +10,7 @@ export function Footer() {
     staleTime: 1000 * 60 * 5,
   });
 
-  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/5511999999999';
+  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/556182586603';
 
   return (
     <footer id="contato" className="py-24 bg-slate-950 border-t border-white/5">
@@ -33,7 +33,7 @@ export function Footer() {
             
             <div className="flex gap-4">
               {[
-                { icon: <span>Wa</span>, href: "https://wa.me/556182586603", label: "Falar no WhatsApp", external: true },
+                { icon: <span>Wa</span>, href: whatsappLink, label: "Falar no WhatsApp", external: true },
                 { icon: <Mail className="w-4 h-4" />, href: "mailto:contato@guildtechsupport.com", label: "Enviar e-mail", external: false }
               ].map((social, i) => (
                 <a 
@@ -77,7 +77,8 @@ export function Footer() {
                   const message = (document.getElementById('footer-message') as HTMLTextAreaElement).value;
                   const text = `Olá, meu nome é ${name}. Gostaria de falar sobre: ${message}`;
                   // Using target="_blank" via window.open is usually preferred for social links from buttons
-                  window.open(`https://wa.me/556182586603?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+                  const base = whatsappLink.split('?')[0];
+                  window.open(`${base}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
                 }}
                 className="w-full bg-accent text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
               >

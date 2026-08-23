@@ -23,7 +23,7 @@ export function Navbar() {
     staleTime: 1000 * 60 * 5, // 5 minutes
   });
 
-  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/5511999999999';
+  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/556182586603';
 
   const navItems = [
     { name: "Início", href: "#inicio" },
