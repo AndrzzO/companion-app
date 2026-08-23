@@ -24,6 +24,8 @@ const CategorySchema = z.object({
   display_order: z.number().int().min(0).max(1000).nullable(),
   is_active: z.boolean().nullable()
 });
+42: 
+43: type CategoryInput = z.infer<typeof CategorySchema>;
 
 const ServiceSchema = z.object({
   id: z.string().uuid().optional(),
@@ -38,6 +40,8 @@ const ServiceSchema = z.object({
   display_order: z.number().int().min(0).max(1000).nullable(),
   cta_text: z.string().max(50).trim().nullable()
 });
+42: 
+43: type ServiceInput = z.infer<typeof ServiceSchema>;
 
 const SettingSchema = z.object({
   key: z.string().min(1).max(50).trim(),
