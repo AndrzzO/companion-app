@@ -99,7 +99,7 @@ export function HowWeWork() {
         </div>
 
         <AnimatePresence>
-          {activeStep !== null && (
+          {activeStep !== null && steps[activeStep] && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -122,19 +122,19 @@ export function HowWeWork() {
                 </button>
 
                 <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-8">
-                  {steps[activeStep!].icon}
+                  {steps[activeStep].icon}
                 </div>
 
                 <span className="text-[10px] font-black tracking-[0.3em] text-accent uppercase mb-4 block">
-                  Fase {activeStep! + 1} / {steps[activeStep!].title}
+                  Fase {activeStep + 1} / {steps[activeStep].title}
                 </span>
 
                 <h3 className="text-3xl font-black text-white mb-6 tracking-tighter italic">
-                  {steps[activeStep!].desc}
+                  {steps[activeStep].desc}
                 </h3>
 
                 <p className="text-slate-400 text-lg leading-relaxed font-medium">
-                  {steps[activeStep!].details}
+                  {steps[activeStep].details}
                 </p>
 
                 <div className="mt-12 pt-8 border-t border-white/5">
