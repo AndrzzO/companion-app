@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon, Mail, Send } from "lucide-react";
 
 export function Footer() {
   return (
@@ -22,8 +22,8 @@ export function Footer() {
             
             <div className="flex gap-4">
               {[
-                { icon: <Linkedin className="w-4 h-4" />, href: "#" },
-                { icon: <Github className="w-4 h-4" />, href: "#" },
+                { icon: <LinkedinIcon className="w-4 h-4" />, href: "#" },
+                { icon: <GithubIcon className="w-4 h-4" />, href: "#" },
                 { icon: <Mail className="w-4 h-4" />, href: "#" }
               ].map((social, i) => (
                 <a 
