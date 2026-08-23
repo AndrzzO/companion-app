@@ -1,9 +1,14 @@
 import { createServerFn } from "@tanstack/react-start";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 import { z } from "zod";
 
 export const getCatalog = createServerFn({ method: "GET" })
   .handler(async () => {
+    const supabase = createClient<Database>(
+      process.env['SUPABASE_URL']!,
+      process.env['SUPABASE_PUBLISHABLE_KEY']!
+    );
     const { data: categories, error: catError } = await supabase
       .from("categories")
       .select("*")
@@ -29,6 +34,10 @@ export const getCatalog = createServerFn({ method: "GET" })
 
 export const getSettings = createServerFn({ method: "GET" })
   .handler(async () => {
+    const supabase = createClient<Database>(
+      process.env['SUPABASE_URL']!,
+      process.env['SUPABASE_PUBLISHABLE_KEY']!
+    );
     const { data: settings, error } = await supabase
       .from("settings")
       .select("*");
