@@ -60,7 +60,7 @@ export function Hero() {
               className="group relative bg-accent text-white px-10 py-5 rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-all duration-300 shadow-premium overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Solicitar Diagnóstico
+                SOLICITAR ORÇAMENTO
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
@@ -70,7 +70,7 @@ export function Hero() {
               href="#soluções" 
               className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400 hover:text-white transition-colors group"
             >
-              Nossas Soluções
+              NOSSAS OPÇÕES
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
