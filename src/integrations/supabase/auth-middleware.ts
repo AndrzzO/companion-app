@@ -87,12 +87,13 @@ export const requireSupabaseAuth = createMiddleware({ type: 'function' }).server
       }
     );
 
-    // Use getSession() instead of getClaims() if getClaims is not available or buggy
+    // Security Hardening: Use getUser() to re-validate the token with Supabase Auth server.
+    // This is more secure than getSession() or decoding the JWT locally.
     const { data, error } = await supabase.auth.getUser(token);
     
     if (error || !data?.user) {
-      console.error("Auth error:", error);
-      throw new Error('Unauthorized: Invalid token or user not found');
+      console.error("[Security Audit] Auth failure:", error?.message || "User not found");
+      throw new Error('Unauthorized: Session invalid or expired');
     }
 
     return next({
