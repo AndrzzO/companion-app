@@ -58,12 +58,9 @@ export function Footer() {
                   placeholder="NOME" 
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-[10px] font-black tracking-widest text-white focus:border-accent transition-colors placeholder:text-slate-600"
                 />
-                <input 
-                  type="email" 
-                  id="footer-email"
-                  placeholder="EMAIL" 
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-[10px] font-black tracking-widest text-white focus:border-accent transition-colors placeholder:text-slate-600"
-                />
+                <div className="w-full bg-slate-900/50 border border-white/5 rounded-xl px-4 py-3 text-[10px] font-black tracking-widest text-slate-500 flex items-center italic">
+                  WHATSAPP DIRETO
+                </div>
               </div>
               <textarea 
                 id="footer-message"
@@ -76,12 +73,12 @@ export function Footer() {
                   const name = (document.getElementById('footer-name') as HTMLInputElement).value;
                   const message = (document.getElementById('footer-message') as HTMLTextAreaElement).value;
                   const text = `Olá, meu nome é ${name}. Gostaria de falar sobre: ${message}`;
-                  window.open(`${whatsappLink}?text=${encodeURIComponent(text)}`, '_blank');
+                  window.open(`https://wa.me/556182586603?text=${encodeURIComponent(text)}`, '_blank');
                 }}
-                className="w-full bg-white text-slate-950 py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-accent hover:text-white transition-all duration-500 flex items-center justify-center gap-3"
+                className="w-full bg-accent text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
               >
-                Enviar Solicitação
-                <Send className="w-3.5 h-3.5" />
+                Falar no WhatsApp
+                <Send className="w-3.5 h-3.5 rotate-[-45deg]" />
               </button>
             </div>
           </div>
