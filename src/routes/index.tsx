@@ -5,6 +5,13 @@ import { Pillars } from "@/components/sections/Pillars";
 import { Solutions } from "@/components/sections/Solutions";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { Footer } from "@/components/layout/Footer";
+import { getCatalog } from "@/lib/catalog.functions";
+import { useSuspenseQuery, queryOptions } from "@tanstack/react-query";
+
+const catalogQueryOptions = queryOptions({
+  queryKey: ["catalog"],
+  queryFn: () => getCatalog(),
+});
 
 export const Route = createFileRoute("/")({
   component: Index,
