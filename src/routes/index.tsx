@@ -34,7 +34,7 @@ function Index() {
   const { data } = useSuspenseQuery(catalogQueryOptions);
   
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-blue-100">
+    <div className="min-h-screen bg-background text-foreground selection:bg-accent/30">
       <Navbar />
       <main>
         <Hero />
