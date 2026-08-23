@@ -103,17 +103,19 @@ export function Solutions({ services, categories, whatsappLink }: SolutionsProps
                     variants={item}
                     className="group flex flex-col p-0 glass-card rounded-3xl hover:-translate-y-2 transition-all duration-500 overflow-hidden"
                   >
-                    <div className="h-48 w-full relative opacity-60 group-hover:opacity-100 transition-opacity duration-500">
-                      <video 
-                        autoPlay 
-                        muted 
-                        loop 
-                        playsInline
-                        className="w-full h-full object-cover"
-                      >
-                        <source src="https://cdn.pixabay.com/video/2021/04/12/70860-536967732_large.mp4" type="video/mp4" />
-                      </video>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+                    <div className="h-48 w-full relative group-hover:scale-105 transition-transform duration-700">
+                      {service.image_url ? (
+                        <img 
+                          src={service.image_url} 
+                          alt={service.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-slate-900 flex items-center justify-center">
+                          <Zap className="w-8 h-8 text-accent/20" />
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
                     </div>
                     <div className="p-10 flex flex-col flex-grow">
                     <div className="flex justify-between items-start mb-8">
