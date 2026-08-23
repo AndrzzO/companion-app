@@ -74,7 +74,10 @@ export const deleteCategory = createServerFn({ method: "POST" })
       .delete()
       .eq("id", id);
       
-    if (error) throw new Error(error.message);
+    if (error) {
+      console.error("[Security Audit] Category delete error:", error.message);
+      throw new Error("Falha ao remover categoria");
+    }
     return { success: true };
   });
 
@@ -108,7 +111,10 @@ export const deleteService = createServerFn({ method: "POST" })
       .delete()
       .eq("id", id);
       
-    if (error) throw new Error(error.message);
+    if (error) {
+      console.error("[Security Audit] Service delete error:", error.message);
+      throw new Error("Falha ao remover serviço");
+    }
     return { success: true };
   });
 
