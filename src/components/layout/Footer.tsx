@@ -1,6 +1,16 @@
 import { Mail, Send } from "lucide-react";
+import { getCatalog } from "@/lib/catalog.functions";
+import { useQuery } from "@tanstack/react-query";
 
 export function Footer() {
+  const { data } = useQuery({
+    queryKey: ["catalog"],
+    queryFn: () => getCatalog(),
+    staleTime: 1000 * 60 * 5,
+  });
+
+  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/5511999999999';
+
   return (
     <footer id="contato" className="py-24 bg-slate-950 border-t border-white/5">
       <div className="container mx-auto px-6">
@@ -44,21 +54,32 @@ export function Footer() {
               <div className="grid grid-cols-2 gap-4">
                 <input 
                   type="text" 
+                  id="footer-name"
                   placeholder="NOME" 
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-[10px] font-black tracking-widest text-white focus:border-accent transition-colors placeholder:text-slate-600"
                 />
                 <input 
                   type="email" 
+                  id="footer-email"
                   placeholder="EMAIL" 
                   className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-[10px] font-black tracking-widest text-white focus:border-accent transition-colors placeholder:text-slate-600"
                 />
               </div>
               <textarea 
+                id="footer-message"
                 placeholder="PROJETO / DESAFIO" 
                 rows={4}
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-[10px] font-black tracking-widest text-white focus:border-accent transition-colors placeholder:text-slate-600 resize-none"
               ></textarea>
-              <button className="w-full bg-white text-slate-950 py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-accent hover:text-white transition-all duration-500 flex items-center justify-center gap-3">
+              <button 
+                onClick={() => {
+                  const name = (document.getElementById('footer-name') as HTMLInputElement).value;
+                  const message = (document.getElementById('footer-message') as HTMLTextAreaElement).value;
+                  const text = `Olá, meu nome é ${name}. Gostaria de falar sobre: ${message}`;
+                  window.open(`${whatsappLink}?text=${encodeURIComponent(text)}`, '_blank');
+                }}
+                className="w-full bg-white text-slate-950 py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:bg-accent hover:text-white transition-all duration-500 flex items-center justify-center gap-3"
+              >
                 Enviar Solicitação
                 <Send className="w-3.5 h-3.5" />
               </button>
