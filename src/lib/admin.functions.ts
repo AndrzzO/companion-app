@@ -19,24 +19,24 @@ async function checkAdmin(supabase: any, userId: string) {
 const CategorySchema = z.object({
   id: z.string().uuid().optional(),
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres").max(100).trim(),
-  description: z.string().max(1000).trim().nullable().optional(),
-  icon: z.string().max(50).trim().nullable().optional(),
-  display_order: z.number().int().min(0).max(1000).default(0),
-  is_active: z.boolean().default(true)
+  description: z.string().max(1000).trim().nullable(),
+  icon: z.string().max(50).trim().nullable(),
+  display_order: z.number().int().min(0).max(1000).nullable(),
+  is_active: z.boolean().nullable()
 });
 
 const ServiceSchema = z.object({
   id: z.string().uuid().optional(),
-  category_id: z.string().uuid().nullable().optional(),
+  category_id: z.string().uuid().nullable(),
   name: z.string().min(2, "O nome deve ter pelo menos 2 caracteres").max(100).trim(),
-  description: z.string().max(2000).trim().nullable().optional(),
-  price: z.number().min(0).max(1000000).nullable().optional(),
-  price_prefix: z.string().max(50).trim().nullable().optional(),
-  image_url: z.string().url("URL de imagem inválida").nullable().or(z.literal("")).optional(),
-  status: z.enum(["active", "inactive"]).default("active"),
-  is_featured: z.boolean().default(false),
-  display_order: z.number().int().min(0).max(1000).default(0),
-  cta_text: z.string().max(50).trim().nullable().optional()
+  description: z.string().max(2000).trim().nullable(),
+  price: z.number().min(0).max(1000000).nullable(),
+  price_prefix: z.string().max(50).trim().nullable(),
+  image_url: z.string().url("URL de imagem inválida").nullable().or(z.literal("")),
+  status: z.enum(["active", "inactive"]).nullable(),
+  is_featured: z.boolean().nullable(),
+  display_order: z.number().int().min(0).max(1000).nullable(),
+  cta_text: z.string().max(50).trim().nullable()
 });
 
 const SettingSchema = z.object({
