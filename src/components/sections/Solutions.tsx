@@ -143,24 +143,39 @@ export function Solutions({ services, categories, whatsappLink }: SolutionsProps
                           </span>
                         </div>
                         
-                        <a 
-                          href={`${whatsappLink}?text=Olá, gostaria de saber mais sobre ${service.name}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <button 
+                          onClick={() => {
+                            const contactSection = document.getElementById('contato');
+                            if (contactSection) {
+                              contactSection.scrollIntoView({ behavior: 'smooth' });
+                              // Optional: Pre-fill the message in the footer
+                              const messageArea = document.getElementById('footer-message') as HTMLTextAreaElement;
+                              if (messageArea) {
+                                messageArea.value = `Gostaria de saber mais sobre: ${service.name}`;
+                              }
+                            }
+                          }}
                           className="bg-white text-slate-950 w-12 h-12 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300 shadow-premium group/btn"
                         >
                           <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                        </a>
+                        </button>
                       </div>
                       
-                      <a 
-                        href={`${whatsappLink}?text=Olá, gostaria de saber mais sobre ${service.name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-500 text-[9px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors duration-300"
+                      <button 
+                        onClick={() => {
+                          const contactSection = document.getElementById('contato');
+                          if (contactSection) {
+                            contactSection.scrollIntoView({ behavior: 'smooth' });
+                            const messageArea = document.getElementById('footer-message') as HTMLTextAreaElement;
+                            if (messageArea) {
+                              messageArea.value = `Gostaria de saber mais sobre: ${service.name}`;
+                            }
+                          }
+                        }}
+                        className="text-left text-slate-500 text-[9px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors duration-300"
                       >
-                        {service.cta_text || "Request Access"}
-                      </a>
+                        {service.cta_text || "Solicitar Orçamento"}
+                      </button>
                     </div>
                     </div>
                   </motion.div>
