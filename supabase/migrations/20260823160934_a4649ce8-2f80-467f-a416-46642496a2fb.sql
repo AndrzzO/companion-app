@@ -1,0 +1,1 @@
+update public.settings set value = 'https://wa.me/556182586603' where key = 'whatsapp_link';
