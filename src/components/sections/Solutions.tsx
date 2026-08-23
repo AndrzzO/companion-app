@@ -155,6 +155,8 @@ export function Solutions({ services, categories, whatsappLink }: SolutionsProps
                       
                       <a 
                         href={`${whatsappLink}?text=Olá, gostaria de saber mais sobre ${service.name}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-slate-500 text-[9px] font-black uppercase tracking-[0.3em] hover:text-accent transition-colors duration-300"
                       >
                         {service.cta_text || "Request Access"}
