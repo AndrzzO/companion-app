@@ -86,6 +86,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
       {
+        name: "google-site-verification",
+        content: "NdqFP86B8K9YaOxL7wXRAjBsL85R9XN9vJDNl_mqdYc",
+      },
+      {
         'http-equiv': 'Content-Security-Policy',
         content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://cdn.pixabay.com; media-src 'self' https://cdn.pixabay.com; connect-src 'self' https://czcekhiqsthqyrvjgupx.supabase.co https://*.lovable.app;",
       },

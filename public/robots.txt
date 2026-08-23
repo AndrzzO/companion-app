@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://guild-tech-support.lovable.app/sitemap.xml
