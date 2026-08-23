@@ -145,6 +145,8 @@ export function Solutions({ services, categories, whatsappLink }: SolutionsProps
                         
                         <a 
                           href={`${whatsappLink}?text=Olá, gostaria de saber mais sobre ${service.name}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="bg-white text-slate-950 w-12 h-12 rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-300 shadow-premium group/btn"
                         >
                           <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

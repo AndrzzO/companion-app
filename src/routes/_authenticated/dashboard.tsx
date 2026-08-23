@@ -72,8 +72,14 @@ function Dashboard() {
   })
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
-    navigate({ to: '/auth' })
+    try {
+      await supabase.auth.signOut();
+      navigate({ to: '/auth' });
+    } catch (err) {
+      console.error("Logout error:", err);
+      // Fallback redirect if signOut fails (e.g. session already gone)
+      navigate({ to: '/auth' });
+    }
   }
 
   const whatsappLink = data.settings.find(s => s.key === 'whatsapp_link')?.value || ''

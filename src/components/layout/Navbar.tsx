@@ -60,6 +60,8 @@ export function Navbar() {
 
         <a 
           href={whatsappLink} 
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 bg-white text-slate-950 px-6 py-2.5 rounded-full text-[11px] uppercase tracking-widest font-black hover:bg-accent hover:text-white transition-all duration-300 shadow-premium"
         >
           <MessageSquare className="w-3.5 h-3.5" />
