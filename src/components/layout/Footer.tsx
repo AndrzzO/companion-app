@@ -10,7 +10,7 @@ export function Footer() {
     staleTime: 1000 * 60 * 5,
   });
 
-  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/5511999999999';
+  const whatsappLink = data?.settings?.find((s: any) => s.key === 'whatsapp_link')?.value || 'https://wa.me/556182586603';
 
   return (
     <footer id="contato" className="py-24 bg-slate-950 border-t border-white/5">
