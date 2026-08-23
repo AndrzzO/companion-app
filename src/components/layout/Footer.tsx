@@ -32,19 +32,21 @@ export function Footer() {
             
             <div className="flex gap-4">
               {[
-                { icon: <span>In</span>, href: "#" },
-                { icon: <span>Gh</span>, href: "#" },
-                { icon: <Mail className="w-4 h-4" />, href: "#" }
+                { icon: <span>Wa</span>, href: "https://wa.me/556182586603", label: "Falar no WhatsApp", external: true },
+                { icon: <Mail className="w-4 h-4" />, href: "mailto:contato@guildtechsupport.com", label: "Enviar e-mail", external: false }
               ].map((social, i) => (
                 <a 
                   key={i} 
                   href={social.href} 
+                  aria-label={social.label}
+                  {...(social.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:border-white/30 transition-all duration-300"
                 >
                   {social.icon}
                 </a>
               ))}
             </div>
+
           </div>
           
           <div className="glass-card p-10 rounded-3xl relative overflow-hidden">
@@ -90,10 +92,10 @@ export function Footer() {
             © 2026 GUILD TECH SUPPORT. ALL RIGHTS RESERVED.
           </div>
           <div className="flex gap-8 text-slate-600 text-[9px] font-black uppercase tracking-[0.3em]">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
-            <a href="#" className="hover:text-white transition-colors">Security</a>
+            <Link to="/privacidade" className="hover:text-white transition-colors">Privacy</Link>
+            <Link to="/termos" className="hover:text-white transition-colors">Terms</Link>
           </div>
+
         </div>
       </div>
     </footer>
