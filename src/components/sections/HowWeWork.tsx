@@ -1,14 +1,47 @@
-import { motion } from "framer-motion";
-import { CheckCircle2, Search, FileSearch, Calendar, Code, Rocket } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, Search, FileSearch, Calendar, Code, Rocket, X } from "lucide-react";
+import { useState } from "react";
 
 export function HowWeWork() {
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+
   const steps = [
-    { title: "Diagnóstico", desc: "Entendemos o problema", icon: <Search className="w-5 h-5" /> },
-    { title: "Análise", desc: "Analisamos a solução", icon: <FileSearch className="w-5 h-5" /> },
-    { title: "Planning", desc: "Planejamos cada sprint", icon: <Calendar className="w-5 h-5" /> },
-    { title: "Dev", desc: "Desenvolvemos com excelência", icon: <Code className="w-5 h-5" /> },
-    { title: "QA", desc: "Validamos cada detalhe", icon: <CheckCircle2 className="w-5 h-5" /> },
-    { title: "Deploy", desc: "Entregamos resultados", icon: <Rocket className="w-5 h-5" /> }
+    { 
+      title: "Diagnóstico", 
+      desc: "Entendemos o problema", 
+      details: "Mergulhamos fundo no seu modelo de negócio para identificar gargalos operacionais e oportunidades de otimização tecnológica.",
+      icon: <Search className="w-5 h-5" /> 
+    },
+    { 
+      title: "Análise", 
+      desc: "Analisamos a solução", 
+      details: "Cruzamos suas necessidades com as melhores tecnologias do mercado para desenhar uma arquitetura robusta e escalável.",
+      icon: <FileSearch className="w-5 h-5" /> 
+    },
+    { 
+      title: "Planning", 
+      desc: "Planejamos cada sprint", 
+      details: "Estruturamos o roadmap de desenvolvimento com entregas claras, prazos realistas e marcos de sucesso bem definidos.",
+      icon: <Calendar className="w-5 h-5" /> 
+    },
+    { 
+      title: "Dev", 
+      desc: "Desenvolvemos com excelência", 
+      details: "Nossa engenharia transforma o plano em código limpo, seguindo padrões premium de performance e segurança.",
+      icon: <Code className="w-5 h-5" /> 
+    },
+    { 
+      title: "QA", 
+      desc: "Validamos cada detalhe", 
+      details: "Testes rigorosos garantem que cada funcionalidade opere perfeitamente antes de chegar ao ambiente de produção.",
+      icon: <CheckCircle2 className="w-5 h-5" /> 
+    },
+    { 
+      title: "Deploy", 
+      desc: "Entregamos resultados", 
+      details: "Lançamento assistido e monitorado, garantindo uma transição suave para as novas ferramentas que impulsionarão seu negócio.",
+      icon: <Rocket className="w-5 h-5" /> 
+    }
   ];
 
   return (
