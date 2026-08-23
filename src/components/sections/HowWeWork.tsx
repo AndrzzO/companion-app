@@ -84,12 +84,71 @@ export function HowWeWork() {
               <h4 className="text-[10px] font-black uppercase tracking-widest text-white mb-2">{s.title}</h4>
               <p className="text-[11px] text-slate-500 font-bold leading-relaxed">{s.desc}</p>
               
+              <button
+                onClick={() => setActiveStep(i)}
+                className="mt-4 text-[9px] font-black uppercase tracking-tighter text-accent opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer underline underline-offset-4"
+              >
+                Ver Detalhes
+              </button>
+
               {i < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-white/10 z-20"></div>
               )}
             </motion.div>
           ))}
         </div>
+
+        <AnimatePresence>
+          {activeStep !== null && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-950/80 backdrop-blur-md"
+              onClick={() => setActiveStep(null)}
+            >
+              <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                className="glass-card max-w-lg w-full p-12 rounded-3xl relative border-accent/20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button 
+                  onClick={() => setActiveStep(null)}
+                  className="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+
+                <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-8">
+                  {steps[activeStep].icon}
+                </div>
+
+                <span className="text-[10px] font-black tracking-[0.3em] text-accent uppercase mb-4 block">
+                  Fase {activeStep + 1} / {steps[activeStep].title}
+                </span>
+
+                <h3 className="text-3xl font-black text-white mb-6 tracking-tighter italic">
+                  {steps[activeStep].desc}
+                </h3>
+
+                <p className="text-slate-400 text-lg leading-relaxed font-medium">
+                  {steps[activeStep].details}
+                </p>
+
+                <div className="mt-12 pt-8 border-t border-white/5">
+                  <button 
+                    onClick={() => setActiveStep(null)}
+                    className="w-full py-4 bg-accent text-white rounded-full font-black text-xs uppercase tracking-widest hover:scale-105 transition-all"
+                  >
+                    Entendido
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
