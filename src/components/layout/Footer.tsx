@@ -77,7 +77,8 @@ export function Footer() {
                   const message = (document.getElementById('footer-message') as HTMLTextAreaElement).value;
                   const text = `Olá, meu nome é ${name}. Gostaria de falar sobre: ${message}`;
                   // Using target="_blank" via window.open is usually preferred for social links from buttons
-                  window.open(`https://wa.me/556182586603?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+                  const base = whatsappLink.split('?')[0];
+                  window.open(`${base}?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
                 }}
                 className="w-full bg-accent text-white py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.3em] hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
               >
