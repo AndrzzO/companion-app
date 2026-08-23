@@ -3,11 +3,24 @@ import { ArrowRight, ChevronRight, Shield, Cpu, Code } from "lucide-react";
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-mesh">
-      {/* Background visual elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[150px]"></div>
+    <section id="inicio" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950">
+      {/* Background Video/Visual elements */}
+      <div className="absolute inset-0 z-0 opacity-40">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="https://cdn.pixabay.com/video/2020/04/19/36553-411326466_large.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950"></div>
+      </div>
+
+      <div className="absolute inset-0 pointer-events-none z-1">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[150px]"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
