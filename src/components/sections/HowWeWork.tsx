@@ -76,7 +76,8 @@ export function HowWeWork() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="group relative flex flex-col items-center text-center p-8 glass rounded-2xl hover:bg-slate-900 transition-all duration-500 border-white/5"
+              className="group relative flex flex-col items-center text-center p-8 glass rounded-2xl hover:bg-slate-900 transition-all duration-500 border-white/5 cursor-pointer"
+              onClick={() => setActiveStep(i)}
             >
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center font-black text-accent mb-6 group-hover:bg-accent group-hover:text-white group-hover:border-accent transition-all duration-500">
                 {s.icon}
@@ -85,8 +86,7 @@ export function HowWeWork() {
               <p className="text-[11px] text-slate-500 font-bold leading-relaxed">{s.desc}</p>
               
               <button
-                onClick={() => setActiveStep(i)}
-                className="mt-4 text-[9px] font-black uppercase tracking-tighter text-accent opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer underline underline-offset-4"
+                className="mt-4 text-[9px] font-black uppercase tracking-tighter text-accent opacity-0 group-hover:opacity-100 transition-opacity underline underline-offset-4"
               >
                 Ver Detalhes
               </button>
@@ -122,19 +122,19 @@ export function HowWeWork() {
                 </button>
 
                 <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-8">
-                  {steps[activeStep as number].icon}
+                  {steps[activeStep!].icon}
                 </div>
 
                 <span className="text-[10px] font-black tracking-[0.3em] text-accent uppercase mb-4 block">
-                  Fase {(activeStep as number) + 1} / {steps[activeStep as number].title}
+                  Fase {activeStep! + 1} / {steps[activeStep!].title}
                 </span>
 
                 <h3 className="text-3xl font-black text-white mb-6 tracking-tighter italic">
-                  {steps[activeStep as number].desc}
+                  {steps[activeStep!].desc}
                 </h3>
 
                 <p className="text-slate-400 text-lg leading-relaxed font-medium">
-                  {steps[activeStep as number].details}
+                  {steps[activeStep!].details}
                 </p>
 
                 <div className="mt-12 pt-8 border-t border-white/5">
