@@ -53,7 +53,7 @@ export const upsertCategory = createServerFn({ method: "POST" })
     
     const { error } = await supabase
       .from("categories")
-      .upsert(data);
+      .upsert(data as any);
       
     if (error) {
       console.error("[Security Audit] Category upsert error:", error.message);
@@ -90,7 +90,7 @@ export const upsertService = createServerFn({ method: "POST" })
     
     const { error } = await supabase
       .from("services")
-      .upsert(data);
+      .upsert(data as any);
       
     if (error) {
       console.error("[Security Audit] Service upsert error:", error.message);
