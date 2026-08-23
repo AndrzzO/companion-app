@@ -1,6 +1,12 @@
 import { createServerFn } from "@tanstack/react-start";
-import { supabase } from "@/integrations/supabase/client";
+import { createClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 import { z } from "zod";
+
+const supabase = createClient<Database>(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_PUBLISHABLE_KEY!
+);
 
 export const getCatalog = createServerFn({ method: "GET" })
   .handler(async () => {
